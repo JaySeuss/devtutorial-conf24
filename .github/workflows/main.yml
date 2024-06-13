@@ -86,7 +86,9 @@ jobs:
         if: always()
         with:
           name: appinspect-api-html-report
-          path: AppInspect_response.htmltest-v9:
+          path: AppInspect_response.html
+          
+  test-v9:
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -141,8 +143,7 @@ jobs:
         with:
           name: pytest-report
           path: ${{ github.workspace }}/pytest-report.html
-
-release:
+  release:
     if: startsWith(github.event.ref, 'refs/tags/v')
     needs: [test-v9, test-v9-2-1, run-appinspect]
     runs-on: ubuntu-latest
